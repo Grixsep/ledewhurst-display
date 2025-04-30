@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "biome-write": "npx @biomejs/biome format --write .",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build && npm run export",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.1",
@@ -29,6 +31,7 @@
     "@types/node": "20.17.23",
     "@types/react": "19.0.1",
     "@types/react-dom": "19.0.2",
+    "gh-pages": "^6.3.0",
     "postcss-custom-media": "^10.0.7",
     "postcss-flexbugs-fixes": "^5.0.2",
     "typescript": "5.8.2"

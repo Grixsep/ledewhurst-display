@@ -1,5 +1,5 @@
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://demo.once-ui.com";
+const baseURL = "https://ledewhurst.com";
 
 // Import and set font for each variant
 import { Geist } from "next/font/google";
@@ -83,14 +83,13 @@ const effects = {
 const meta = {
   home: {
     path: "/",
-    title: "Once UI for Next.js",
-    description: "An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.",
+    title: "LeDewhurst Pages – Personal, Creative & Technical Projects",
+    description:
+      "Explore the LeDewhurst family’s personal and professional pages – including Paul & An’s portfolio and our wedding site",
     image: "/og/home.jpg",
-    canonical: "https://once-ui.com",
+    canonical: "https://ledewhurst.com",
     robots: "index,follow",
-    alternates: [
-      { href: "https://once-ui.com", hrefLang: "en" },
-    ],
+    alternates: [{ href: "https://ledewhurst.com", hrefLang: "en" }],
   },
   // add more routes and reference them in page.tsx
 };
