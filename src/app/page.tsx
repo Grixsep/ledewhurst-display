@@ -42,6 +42,7 @@ import {
   CompareImage,
   ThemeSwitcher,
 } from "@/once-ui/components";
+import { ElementType } from "@/once-ui/components/ElementType";
 import { CodeBlock, MediaUpload } from "@/once-ui/modules";
 import { ScrollToTop } from "@/once-ui/components/ScrollToTop";
 
@@ -104,6 +105,27 @@ export default function Home() {
     }
     return null;
   };
+
+  const linkCards = [
+    {
+      href: "https://paul.ledewhurst.com",
+      title: "Paul’s Portfolio",
+      description: "Simulation engineer and founder of PAACS Software.",
+      image: "/images/profile.jpg",
+    },
+    {
+      href: "https://wedding.ledewhurst.com",
+      title: "Wedding Site",
+      description: "Details, RSVP, and photos from our wedding.",
+      image: "/images/profile.jpg",
+    },
+    {
+      href: "https://paacs.pro",
+      title: "PAACS Software Ltd",
+      description: "Software company founded by Paul LeDewhurst",
+      image: "/images/profile.jpg",
+    },
+  ];
 
   return (
     <Column fillWidth paddingY="80" paddingX="s" horizontal="center" flex={1}>
@@ -323,158 +345,52 @@ export default function Home() {
               The collection
             </Text>
 
-            {/* COMPARE IMAGE */}
-            <CompareImage
-              radius="xl"
-              overflow="hidden"
-              border="neutral-alpha-weak"
-              leftContent={{ src: "/images/1.jpg", alt: "alt" }}
-              rightContent={{ src: "/images/2.jpg", alt: "alt" }}
-            />
+            {/* ledewhurst links */}
+            <Row
+              gap="24"
+              horizontal="center"
+              fillWidth
+              wrap
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                justifyContent: "center",
+                rowGap: "32px",
+              }}
+            >
+              {linkCards.map((link) => (
+                <ElementType
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  background="surface"
+                  maxWidth={24}
+                  radius="l-4"
+                  direction="column"
+                  cursor="pointer"
+                  role="link"
+                >
+                  <SmartImage
+                    sizes="640px"
+                    fillWidth
+                    aspectRatio="4 / 3"
+                    radius="l"
+                    src={link.image}
+                    alt={`${link.title} thumbnail`}
+                  />
+                  <ElementType fillWidth paddingX="20" paddingY="24" gap="8">
+                    <Text variant="body-default-xl">{link.title}</Text>
+                    <Text onBackground="neutral-weak" variant="body-default-s">
+                      {link.description}
+                    </Text>
+                  </ElementType>
+                </ElementType>
+              ))}
+            </Row>
           </Column>
         </Column>
-        {/* CODE PREVIEW */}
-        <TiltFx fillWidth paddingX="32" paddingTop="64">
-          <Column
-            border="neutral-alpha-weak"
-            paddingX="32"
-            radius="xl"
-            overflow="hidden"
-            paddingY="160"
-            fillWidth
-            position="relative"
-          >
-            <Background
-              mask={{
-                x: 100,
-                y: 0,
-              }}
-              position="absolute"
-              grid={{
-                display: true,
-                color: "neutral-alpha-medium",
-                width: "2rem",
-                height: "2rem",
-              }}
-            />
-            <Background
-              mask={{
-                x: 0,
-                y: 100,
-                radius: 100,
-              }}
-              position="absolute"
-              grid={{
-                display: true,
-                color: "brand-alpha-strong",
-                width: "12",
-                height: "12",
-              }}
-              gradient={{
-                display: true,
-                opacity: 100,
-                height: 100,
-                width: 100,
-                tilt: 0,
-                x: 0,
-                y: 100,
-                colorStart: "brand-solid-strong",
-                colorEnd: "brand-background-medium",
-              }}
-            />
-            <Column horizontal="center" gap="48" fillWidth position="relative">
-              <Heading align="center" as="h2" variant="display-default-l">
-                Quick start
-              </Heading>
-              <CodeBlock
-                compact
-                maxWidth={40}
-                codeInstances={[
-                  {
-                    code: "git clone https://github.com/once-ui-system/nextjs-starter.git",
-                    language: "tsx",
-                    label: "tsx",
-                  },
-                ]}
-              />
-            </Column>
-          </Column>
-        </TiltFx>
 
-        <Row
-          position="relative"
-          fillWidth
-          paddingX="32"
-          paddingTop="160"
-          minHeight={28}
-          paddingBottom="80"
-          horizontal="center"
-          vertical="end"
-        >
-          <Background
-            mask={{
-              x: 50,
-              y: 100,
-            }}
-            position="absolute"
-            grid={{
-              display: true,
-              width: "0.25rem",
-              color: "brand-alpha-strong",
-              height: "0.25rem",
-            }}
-          />
-          <Row
-            position="relative"
-            textVariant="display-default-m"
-            align="center"
-          >
-            Learn more
-          </Row>
-        </Row>
-        <Row fillWidth overflow="hidden">
-          <Row
-            maxWidth="32"
-            borderTop="neutral-alpha-weak"
-            borderBottom="neutral-medium"
-          />
-          <Row fillWidth border="neutral-alpha-weak" mobileDirection="column">
-            {links.map((link, index) => (
-              <Card
-                key={link.href}
-                fillWidth
-                href={link.href}
-                padding="40"
-                gap="8"
-                background="page"
-                direction="column"
-                borderRight={
-                  index < links.length - 1 ? "neutral-alpha-weak" : undefined
-                }
-                border={undefined}
-              >
-                <Row fillWidth center gap="12">
-                  <Text variant="body-strong-m" onBackground="neutral-strong">
-                    {link.title}
-                  </Text>
-                  <Icon size="s" name="arrowUpRight" />
-                </Row>
-                <Text
-                  align="center"
-                  variant="body-default-s"
-                  onBackground="neutral-weak"
-                >
-                  {link.description}
-                </Text>
-              </Card>
-            ))}
-          </Row>
-          <Row
-            maxWidth="32"
-            borderTop="neutral-alpha-weak"
-            borderBottom="neutral-medium"
-          />
-        </Row>
         <Row
           position="relative"
           as="footer"
@@ -517,57 +433,6 @@ export default function Home() {
           </Column>
         </Row>
       </Column>
-
-      <Dialog
-        isOpen={isFirstDialogOpen}
-        onClose={() => setIsFirstDialogOpen(false)}
-        title="Account details"
-        description="Manage your security settings and password."
-        base={isSecondDialogOpen}
-        onHeightChange={(height) => setFirstDialogHeight(height)}
-        footer={
-          <Button
-            variant="secondary"
-            onClick={() => setIsFirstDialogOpen(false)}
-          >
-            Close
-          </Button>
-        }
-      >
-        <Column paddingTop="24" fillWidth gap="24">
-          <Switch
-            reverse
-            isChecked={twoFA}
-            onToggle={() => setTwoFA(!twoFA)}
-            label="2FA"
-            description="Enable two factor authentication"
-          />
-          <Button onClick={() => setIsSecondDialogOpen(true)}>
-            Change password
-          </Button>
-        </Column>
-      </Dialog>
-      <Dialog
-        isOpen={isSecondDialogOpen}
-        onClose={() => setIsSecondDialogOpen(false)}
-        title="Change password"
-        stack
-        description="Choose a new password for your account."
-        minHeight={firstDialogHeight}
-        footer={
-          <>
-            <Button
-              variant="secondary"
-              onClick={() => setIsSecondDialogOpen(false)}
-            >
-              Close
-            </Button>
-            <Button onClick={() => setIsSecondDialogOpen(false)}>Save</Button>
-          </>
-        }
-      >
-        <PasswordInput id="resetPassword" label="New password" />
-      </Dialog>
     </Column>
   );
 }
